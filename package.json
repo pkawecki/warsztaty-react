@@ -2,6 +2,7 @@
   "name": "warsztaty-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/panel/",
   "dependencies": {
     "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining": "^7.13.12",
     "@testing-library/jest-dom": "^5.15.1",
@@ -27,7 +28,7 @@
     "start": "run-p start:* ",
     "start-silent": "run-p start > /dev/null",
     "start:react": "react-scripts start",
-    "start:api": "npm build && node server.js",
+    "start:api": "npm run build && node server.js",
     "start-and-test": "run-p start-silent test ",
     "build": "react-scripts build",
     "lint": "esw --watch --clear",

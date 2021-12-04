@@ -6,7 +6,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      <MainLayout>tekstss</MainLayout>
+      <MainLayout>aabbtekstss</MainLayout>
     </div>
   );
 }

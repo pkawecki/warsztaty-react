@@ -47,7 +47,8 @@ export const select = {
     productList: '.cart__order-summary',
     toggleTrigger: '.cart__summary',
     totalNumber: `.cart__total-number`,
-    totalPrice: '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
+    totalPrice:
+      '.cart__total-price strong, .cart__order-total .cart__order-price-sum strong',
     subtotalPrice: '.cart__order-subtotal .cart__order-price-sum strong',
     deliveryFee: '.cart__order-delivery .cart__order-price-sum strong',
     form: '.cart__order',
@@ -69,7 +70,7 @@ export const select = {
     tables: '.floor-plan .table',
     floorPlan: '.floor-plan',
     bookingForm: '.booking-form',
-    orderConfirmation: '.order-confirmation'
+    orderConfirmation: '.order-confirmation',
   },
 
   nav: {
@@ -98,10 +99,8 @@ export const classNames = {
 
   pages: {
     active: 'active',
-  }
-
+  },
 };
-
 
 export const settings = {
   amountWidget: {
@@ -128,7 +127,10 @@ export const settings = {
   },
 
   db: {
-    url: '//' + window.location.hostname + (window.location.hostname == 'localhost' ? ':3131' : ''),
+    url:
+      '//' +
+      window.location.hostname +
+      (window.location.hostname == 'localhost' ? ':3131/api' : ''),
     products: 'products',
     orders: 'orders', //possible refactoring needed to *order*
     booking: 'bookings', ////possible refactoring needed to *booking*
@@ -137,14 +139,19 @@ export const settings = {
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
     repeatParam: 'repeat_ne=false',
-  }
+  },
 };
 
 export const templates = {
-  menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
+  menuProduct: Handlebars.compile(
+    document.querySelector(select.templateOf.menuProduct).innerHTML
+  ),
 
-  cartProduct: Handlebars.compile(document.querySelector(select.templateOf.cartProduct).innerHTML),
+  cartProduct: Handlebars.compile(
+    document.querySelector(select.templateOf.cartProduct).innerHTML
+  ),
 
-  bookingWidget: Handlebars.compile(document.querySelector(select.templateOf.bookingWidget).innerHTML),
-
+  bookingWidget: Handlebars.compile(
+    document.querySelector(select.templateOf.bookingWidget).innerHTML
+  ),
 };
