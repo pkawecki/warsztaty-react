@@ -8,9 +8,13 @@ const PageNav = (props) => {
       <NavLink exact to={`${process.env.PUBLIC_URL}/`} activeClassName="active">
         Home
       </NavLink>
+
+      {/* Login */}
       <NavLink to={`${process.env.PUBLIC_URL}/login`} activeClassName="active">
         Login
       </NavLink>
+
+      {/* Tables */}
       <NavLink
         exact
         to={`${process.env.PUBLIC_URL}/tables`}
@@ -18,6 +22,8 @@ const PageNav = (props) => {
       >
         Tables
       </NavLink>
+
+      {/* Waiter */}
       <NavLink
         exact
         to={`${process.env.PUBLIC_URL}/waiter`}
@@ -25,6 +31,8 @@ const PageNav = (props) => {
       >
         Waiter
       </NavLink>
+
+      {/* Kitchen */}
       <NavLink
         exact
         to={`${process.env.PUBLIC_URL}/kitchen`}
