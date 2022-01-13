@@ -51,6 +51,16 @@
 
 `/kitchen`
 -wyświetla listę zamówień w kolejności zożenia
--lista musi zawirać: - numer stolika (lub zamówienia zdalnego)
--pełne informacjie dot. zamowionych dań
--na liście musi być możliwość oznaczenia zamówienia jako zrealizowanie
+-lista musi zawierać:
+
+- numer stolika (lub zamówienia zdalnego)
+  -pełne informacjie dot. zamowionych dań
+  -na liście musi być możliwość oznaczenia zamówienia jako zrealizowanie
+
+const orders = [
+{ type: 'local', table: '1', status: 'ordered', order: 123 },
+{ type: 'local', table: '2', status: 'prepared', order: 234 },
+{ type: 'local', status: 'delivered', order: 345 },
+{ type: 'remote', table: null, status: 'paid', order: 456 },
+{ type: 'remote', table: null, status: 'paid', order: 789 },
+];

@@ -1,5 +1,6 @@
-@import "../../../styles/settings.scss";
+@import '../../../styles/settings.scss';
 
 .component {
   padding: $base-size;
+  max-width: 330px;
 }

@@ -1,5 +1,9 @@
-@import "../../../styles/settings.scss";
+@import '../../../styles/settings.scss';
 
 .component {
   padding: $base-size;
+}
+
+.tableHead {
+  font-weight: 600;
 }
