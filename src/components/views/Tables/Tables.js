@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './Tables.module.scss';
-import { Link } from 'react-router-dom';
 import {
   Paper,
   Table,
@@ -51,6 +50,8 @@ const renderButton = (eventType, id) => {
           <Button to={`${process.env.PUBLIC_URL}/booking/new`}>Booking</Button>
         </React.Fragment>
       );
+    default:
+      return null;
   }
 };
 
@@ -76,7 +77,7 @@ const Tables = () => {
               {tableOccupation.map((table) => (
                 <TableCell key={table.id}>
                   {table.busy.map((book) =>
-                    book.hour == hour ? renderButton(book.type, book.id) : null
+                    book.hour === hour ? renderButton(book.type, book.id) : null
                   )}
                 </TableCell>
               ))}

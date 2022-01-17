@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import styles from './Homepage.module.scss';
-import Waiter from '../Waiter/Waiter';
+import Waiter from '../Waiter/WaiterContainer';
 import { Container, Toolbar } from '@material-ui/core';
 
 const rows = [
@@ -20,13 +20,13 @@ const rows = [
 
 export default function Homepage() {
   return (
-    <React.Fragment className={styles.component}>
+    <React.Fragment>
       <Container maxWidth="lg" className={styles.component} align="left">
         Today&apos;s ordering stats
       </Container>
       <TableContainer className={styles.paper} component={Paper}>
         <Table size="small">
-          <TableHead component="th">
+          <TableHead>
             <TableRow>
               <TableCell className={styles.tableHead}>Type</TableCell>
               <TableCell className={styles.tableHead} align="right">
@@ -58,7 +58,7 @@ export default function Homepage() {
       <Container maxWidth="sm" className={styles.component} align="left">
         Today&apos;s bookings and events
       </Container>
-      <Waiter size="small" />
+      <Waiter />
     </React.Fragment>
   );
 }
