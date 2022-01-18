@@ -3,6 +3,7 @@ import Waiter from './Waiter';
 import {
   getAll,
   fetchFromAPI,
+  changeTableState,
   getLoadingState,
 } from '../../../redux/tablesRedux';
 
@@ -12,7 +13,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTables: () => dispatch(fetchFromAPI()),
+  fetchTables: () => dispatch(fetchFromAPI()), //to jest funkcja którą thunk przechwyci
+  changeTables: (id, currentAction, order) =>
+    dispatch(changeTableState(id, currentAction, order)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Waiter);

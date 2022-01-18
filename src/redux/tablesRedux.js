@@ -12,11 +12,13 @@ const createActionName = (name) => `app/${reducerName}/${name}`;
 const FETCH_START = createActionName('FETCH_START');
 const FETCH_SUCCESS = createActionName('FETCH_SUCCESS');
 const FETCH_ERROR = createActionName('FETCH_ERROR');
+const TABLE_UPDATED = createActionName('TABLE_UPDATED');
 
 /* action creators */
 export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
 export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
+export const tableUpdate = (payload) => ({ payload, type: TABLE_UPDATED });
 
 /* reducer */
 
@@ -30,6 +32,22 @@ export const fetchFromAPI = () => {
         dispatch(fetchSuccess(res.data));
       })
       .catch((err) => {
+        dispatch(fetchError(err.message || true));
+      });
+  };
+};
+
+export const changeTableState = (id, currentAction, order) => {
+  return (dispatch, getState) => {
+    Axios.patch(`${api.url}/api/${api.tables}/${id}`, {
+      status: currentAction,
+      order: order,
+    })
+      .then((res) => {
+        console.log('resdata', res.data);
+        dispatch(tableUpdate(res.data));
+      })
+      .catch(function (err) {
         dispatch(fetchError(err.message || true));
       });
   };
@@ -54,6 +72,16 @@ export default function reducer(statePart = [], action = {}) {
           error: false,
         },
         data: action.payload,
+      };
+    }
+    case TABLE_UPDATED: {
+      return {
+        ...statePart,
+        data: statePart.data.map((tableElement) =>
+          tableElement.id == action.payload.id
+            ? { ...tableElement, status: action.payload.status }
+            : { ...tableElement }
+        ),
       };
     }
     case FETCH_ERROR: {

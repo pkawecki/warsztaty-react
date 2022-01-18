@@ -10,8 +10,13 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 class Waiter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.generateOnClick = this.generateOnClick.bind(this);
+  }
   static propTypes = {
     fetchTables: PropTypes.func,
+    changeTables: PropTypes.func,
     loading: PropTypes.shape({
       active: PropTypes.bool,
       error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
@@ -24,25 +29,80 @@ class Waiter extends React.Component {
     fetchTables();
   }
 
-  renderActions(status) {
+  generateOnClick(id, currentAction, order) {
+    const { changeTables } = this.props;
+    console.log('current action', currentAction, ' id', id, 'order', order);
+    changeTables(id, currentAction, order);
+  }
+
+  renderActions(id, status, order) {
+    const vars = { id, status, order };
     switch (status) {
       case 'free':
         return (
           <>
-            <Button>thinking</Button>
-            <Button>new order</Button>
+            <Button
+              onClick={() =>
+                this.generateOnClick(vars.id, 'thinking', vars.order)
+              }
+            >
+              thinking
+            </Button>
+            <Button
+              onClick={() =>
+                this.generateOnClick(vars.id, 'ordered', vars.order)
+              }
+            >
+              new order
+            </Button>
           </>
         );
       case 'thinking':
-        return <Button>new order</Button>;
+        return (
+          <Button
+            onClick={() => this.generateOnClick(vars.id, 'ordered', vars.order)}
+          >
+            new order
+          </Button>
+        );
+
       case 'ordered':
-        return <Button>prepared</Button>;
+        return (
+          <Button
+            onClick={() =>
+              this.generateOnClick(vars.id, 'prepared', vars.order)
+            }
+          >
+            prepared
+          </Button>
+        );
+
       case 'prepared':
-        return <Button>delivered</Button>;
+        return (
+          <Button
+            onClick={() =>
+              this.generateOnClick(vars.id, 'delivered', vars.order)
+            }
+          >
+            delivered
+          </Button>
+        );
       case 'delivered':
-        return <Button>paid</Button>;
+        return (
+          <Button
+            onClick={() => this.generateOnClick(vars.id, 'paid', vars.order)}
+          >
+            paid
+          </Button>
+        );
       case 'paid':
-        return <Button>free</Button>;
+        return (
+          <Button
+            onClick={() => this.generateOnClick(vars.id, 'free', vars.order)}
+          >
+            free
+          </Button>
+        );
       default:
         return null;
     }
@@ -95,7 +155,9 @@ class Waiter extends React.Component {
                       </Button>
                     )}
                   </TableCell>
-                  <TableCell>{this.renderActions(row.status)}</TableCell>
+                  <TableCell>
+                    {this.renderActions(row.id, row.status, row.order)}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
